@@ -12,15 +12,15 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-button (click)="sortProductsAsc()">Sort Asc</ion-button>
+  <ion-button  (click)="sortProductsDesc()">Desc Desc</ion-button >
+  <ion-searchbar placeholder="Search for Products" id="filter" type="text" #filterValue></ion-searchbar>
 
-  <ion-searchbar placeholder="Search for Products"></ion-searchbar>
-  <button (click)="sortProductsAsc()">Sort Asc</button>
-<button (click)="sortProductsDesc()">Desc Desc</button>
 
 <label for="filter">Filter By Name: </label>
-<input id="filter" type="text" #filterValue>
-<button (click)="filterBy(filterValue)">Filter</button>
-<button (click)="showGroup()">Show Group</button>
+<!-- <input id="filter" type="text" #filterValue>-->
+<ion-button (click)="filterBy(filterValue)">Filter</ion-button>
+<ion-button (click)="showGroup()">Show Group</ion-button>
 
 
 

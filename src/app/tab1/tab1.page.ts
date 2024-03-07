@@ -99,7 +99,7 @@ export class Tab1Page {
     this.products = this.products.sort((a, b) => b.price - a.price);
   }
 
-  filterBy(nameInput: HTMLInputElement) {
+  filterBy(nameInput:any) {
     if (nameInput.value) {
       this.products = this.products.filter(p => p.name === nameInput.value)
     }

@@ -14,6 +14,23 @@
   </ion-header>
 
   <ion-searchbar placeholder="Search for Products"></ion-searchbar>
+  <button (click)="sortProductsAsc()">Sort Asc</button>
+<button (click)="sortProductsDesc()">Desc Desc</button>
+
+<label for="filter">Filter By Name: </label>
+<input id="filter" type="text" #filterValue>
+<button (click)="filterBy(filterValue)">Filter</button>
+<button (click)="showGroup()">Show Group</button>
+
+
+
+<div class="category" *ngFor="let item of categories">
+  <h2>{{item.category}}</h2>
+  <app-list-products [products]="item.products"></app-list-products>
+</div>
+
+  <h2>All Products</h2>
+<app-list-products [products]="products"></app-list-products>
 
   <ion-grid>
     <ion-row>

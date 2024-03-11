@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductfilterPipe } from './productfilter.pipe';
+
+import {HttpClient} from '@angular/common/http';
 
 interface groupByCategory {
   category: string;
@@ -13,7 +16,60 @@ interface groupByCategory {
 })
 
 
-export class Tab1Page {
+export class Tab1Page  implements OnInit {
+  products1: any = [];
+  data:any;
+  searchBoxTxt: string = '';
+  selectedProduct: string= '';
+  checkEmpty: boolean= true;
+  myData: any[]= [{
+        "productCode": "876544",
+        "productName": "T shirt",
+        "productQuantity":21,
+        "productPrice": 19.99
+    }, {
+        "productCode": "946765",
+        "productName": "Coat",
+        "productQuantity": 16,
+        "productPrice": 99.97
+    }, {
+        "productCode": "340542",
+        "productName": "Hoody",
+        "productQuantity": 34,
+        "productPrice": 29.99
+    }, {
+        "productCode": "230945",
+        "productName": "Belt",
+        "productQuantity": 9,
+        "productPrice": 9.97
+    }, {
+        "productCode": "981875",
+        "productName": "Pant",
+        "productQuantity": 6,
+        "productPrice": 69.99
+    }, {
+        "productCode": "999876",
+        "productName": "Shirt",
+        "productQuantity": 12,
+        "productPrice": 16.99
+    }, {
+        "productCode": "109876",
+        "productName": "Socks",
+        "productQuantity": 43,
+         "productPrice": 9.98
+    }, {
+        "productCode": "762341",
+        "productName": "Sweater",
+        "productQuantity": 23,
+        "productPrice": 43.99
+    }, {
+        "productCode": "873445",
+        "productName": "Shoe",
+        "productQuantity": 10,
+        "productPrice": 31.97
+    }];
+
+    
   products = [
     {
       "id": 1,
@@ -86,10 +142,31 @@ export class Tab1Page {
       "price": 99.99
     }
   ]
-  
+  httpClient: any;
   categories: groupByCategory[] = [];
 
-  constructor() {}
+  constructor(httpClient: HttpClient) {
+    this.httpClient = httpClient;
+  }
+
+  getProductDetail(productName:any){
+    console.log(productName);
+    this.selectedProduct = productName;
+    this.searchBoxTxt = productName;
+  }
+  ngOnInit(){
+    this.httpClient.get('https://fakestoreapi.com/products/category/jewelery').subscribe((data:any )=> {
+
+      if (data){
+         this.data = data;
+        console.log(data);
+        data.forEach( (prd : any ) => {
+          console.log(prd.title);
+           this.products1.push(prd.title);
+        })
+      }
+    });
+  }
 
   public sortProductsDesc(): void {
     this.products = this.products.sort((a, b) => a.price - b.price);
@@ -105,6 +182,9 @@ export class Tab1Page {
     }
   }
 
+  filterBySearch(nameInput:any){
+    console.log(nameInput.value);
+  }
   showGroup() {
     //First, group the products by category
     const group = this.products.reduce((acc: any, curr) => {

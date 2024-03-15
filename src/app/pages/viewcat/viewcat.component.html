@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+      {{category}} Categories
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <app-pageloader *ngIf="showLoader"></app-pageloader>
+   
+  <ion-card class="shadow">
+    <ion-card-content>
+      <ion-list>
+        <ion-item button *ngFor="let cat of categories" (click)="navigateLink(cat.cat_id)">
+          <ion-thumbnail slot="start">
+            <img [ngClass]="{'silver' : category == 'Silver'}" src="http://localhost/jewel_api/images/category/{{cat.cat_image}}" class="rounded img-fluid">
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{cat.cat_name}}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      </ion-card-content>
+      </ion-card>
+  
+</ion-content>

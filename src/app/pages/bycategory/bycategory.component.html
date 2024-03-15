@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+      {{catName}}
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <app-pageloader *ngIf="showLoader"></app-pageloader>
+
+  <ion-card class="shadow">
+    <ion-card-header>
+      <!-- <ion-card-title>Card Title</ion-card-title> -->
+      <ion-card-subtitle>Showing {{productCount}} products for "{{catName}}"</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item button *ngFor="let cat of categories">
+          <ion-thumbnail slot="start">
+            <img class="rounded" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{cat.product_name}}</h2>
+            <p>{{cat.product_description}}</p>
+          </ion-label>
+        </ion-item>          
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+   
+     
+</ion-content>

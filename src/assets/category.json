@@ -1,0 +1,15 @@
+ 
+[
+{"cat_id":"1","cat_name":"Necklaces","cat_description":"","cat_image":"necklace.png","cat_type":"gold","keyword":""},
+{"cat_id":"2","cat_name":"Earrings","cat_description":"","cat_image":"earrings.png","cat_type":"gold","keyword":""},
+{"cat_id":"3","cat_name":"Bracelets","cat_description":"","cat_image":"bracelate.png","cat_type":"gold","keyword":""},
+{"cat_id":"4","cat_name":"Rings","cat_description":"","cat_image":"rings.png","cat_type":"gold","keyword":""},
+{"cat_id":"5","cat_name":"Pendants","cat_description":"","cat_image":"pendant.png","cat_type":"gold","keyword":""},
+{"cat_id":"6","cat_name":"Bangles","cat_description":"","cat_image":"bangles.png","cat_type":"gold","keyword":""},
+{"cat_id":"7","cat_name":"Anklet","cat_description":"","cat_image":"anklet.png","cat_type":"gold","keyword":""},
+{"cat_id":"8","cat_name":"Crystal Jewellery","cat_description":"","cat_image":"crystal.png","cat_type":"gold","keyword":""},
+{"cat_id":"9","cat_name":"Chain","cat_description":"","cat_image":"chain.png","cat_type":"gold","keyword":""},
+{"cat_id":"10","cat_name":"Statement Jewellery","cat_description":"","cat_image":"statement.png","cat_type":"gold","keyword":""},
+{"cat_id":"11","cat_name":"Copper Jewellery","cat_description":"","cat_image":"copperj.png","cat_type":"gold","keyword":""},
+{"cat_id":"12","cat_name":"Brass Jewellery","cat_description":"","cat_image":"brassj.png","cat_type":"gold","keyword":""}
+]

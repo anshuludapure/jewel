@@ -1,0 +1,49 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+// Database connection settings
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "jewel";
+
+// Keyword from the request
+$keyword = ($_GET['query'])? $_GET['query']:'Gold';
+
+try {
+    // Create a PDO instance
+    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+    
+    // Set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Prepare SQL statement
+    $sql = "SELECT * FROM products WHERE product_name LIKE ? OR product_description LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $params = array("%$keyword%","%$keyword%");
+    // Bind parameters
+    //$stmt->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+
+    // Execute query
+    $stmt->execute($params);
+    
+    // Fetch products
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Check if products found
+    if ($products) {
+        // Return JSON response
+        header('Content-Type: application/json');
+        echo json_encode($products);
+    } else {
+        // Return JSON response if no products found
+        echo json_encode(array('message' => 'No products found.'));
+    }
+} catch(PDOException $e) {
+    // Return error message if connection fails
+    echo json_encode(array('error' => 'Connection failed: ' . $e->getMessage()));
+}
+
+// Close connection
+$conn = null;
+?>

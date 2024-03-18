@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/signals';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JsonDataService } from 'src/app/services/json-data.service';
 
@@ -14,7 +15,7 @@ export class SearchresultComponent  implements OnInit {
   categories:any[] = [];
   showLoader:boolean = true;
   category:any;
-  productSearch: any = [];
+  productSearch: any[] = [];
   productSearchHeading:any='';
   constructor(private http:HttpClient, private route: ActivatedRoute, private router:Router, private dataService: JsonDataService) {
   
@@ -29,21 +30,21 @@ export class SearchresultComponent  implements OnInit {
     const searchTerm = history.state;
     this.productSearchHeading = "List of products with keyword : " +history.state.product_name;
     if(searchTerm) { 
-      this.dataService.getProducts().subscribe(data => {
-        let key = "product_name";
-//let val = '/^'+history.state.product_name+'/'; // regular expression
-let val = /^Ra/;
-let str1 = "/^"
-var re = new RegExp(str1);
-let results = Object.values(data).filter(product => val.test(product[key]));
-console.log(results);
-      });
+      this.getDeepSearchProducts(searchTerm);       
     } else { 
       this.productSearch = [];
     }
 
     this.getCategories();
  
+  }
+
+  getDeepSearchProducts(searchTerm:any){
+    this.dataService.getdeepSearchProduct(searchTerm).subscribe(data => {
+      console.log(data);
+      this.productSearch = data.products;
+      this.showLoader = false;
+  })      
   }
 
   navigateLink(id:any) { 

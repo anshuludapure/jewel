@@ -1,0 +1,16 @@
+RewriteEngine on
+RewriteRule ^/?(\w+)/?$ $1.php
+
+RewriteRule ^attachments/_files/download/([a-zA-Z0-9/.-=]+)/$ upa_contents_downloads5895.php?get_file=$1 [QSA,PT,L]
+RewriteRule ^attachments/certificate/download/([a-zA-Z0-9/.-=]+)/$ download_certificate.php?cId=$1 [QSA,PT,L]
+RewriteRule ^form/([a-zA-Z0-9/]+)$ form.php?fId=$1 [QSA,PT,L]
+
+RewriteRule ^go/landing/([a-zA-Z0-9/.-:=]+)$ landing.php?go=$1 [QSA,PT,L]
+
+#RewriteRule ^([a-zA-Z0-9/.]+)$ index.php?landing=$1
+
+#RewriteRule ^attachments/_files/download.html/([a-zA-Z0-9/.-]+)$ download.php?get_file=$1 [QSA,PT,L]
+
+RewriteRule ^attachments/certificate/download/([a-zA-Z0-9/.-=]+)/([a-zA-Z0-9/.-=]+)/$ download_upa_certificate.php?get_file=$1&token=$2 [QSA,PT,L]
+
+RewriteRule ^certificate/([a-zA-Z0-9/.-:=]+)/view$ viewCertificates.php?linkId=$1 [QSA,PT,L]

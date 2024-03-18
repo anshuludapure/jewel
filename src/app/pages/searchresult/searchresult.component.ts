@@ -40,7 +40,8 @@ export class SearchresultComponent  implements OnInit {
   }
 
   getDeepSearchProducts(searchTerm:any){
-    this.dataService.getdeepSearchProduct(searchTerm).subscribe(data => {
+    console.log(searchTerm);
+    this.dataService.getdeepSearchProduct(searchTerm.product_name).subscribe(data => {
       console.log(data);
       this.productSearch = data.products;
       this.showLoader = false;

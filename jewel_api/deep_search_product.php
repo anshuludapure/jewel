@@ -7,7 +7,7 @@ require_once "_inc/dbc.php";
 
 $keyword = ($_GET['query'])? $_GET['query']:'Gold';
 
-    $sql = "SELECT * FROM products WHERE keywords LIKE '%an%'OR product_description like '%".$_GET['query']."%' UNION SELECT * FROM category WHERE keyword LIKE '%".$_GET['query']."%'";
+    $sql = "SELECT * FROM products WHERE keywords LIKE '%". $_GET['query']."%'OR product_description like '%".$_GET['query']."%' UNION SELECT * FROM category WHERE keyword LIKE '%".$_GET['query']."%'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);

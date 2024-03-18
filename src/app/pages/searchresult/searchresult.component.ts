@@ -26,9 +26,15 @@ export class SearchresultComponent  implements OnInit {
 
   
   ngOnInit() {
-    console.log(history.state);
-    const searchTerm = history.state;
-    this.productSearchHeading = "List of products with keyword : " +history.state.product_name;
+    console.log(history);
+    if(history.state.product_name){
+      var searchTerm = history.state.product_name;
+    }else{
+      var searchTerm = history.state.cat_name;
+    }
+    console.log(searchTerm);
+
+    this.productSearchHeading = "List of products with keyword : " + searchTerm;
     if(searchTerm) { 
       this.getDeepSearchProducts(searchTerm);       
     } else { 
@@ -41,7 +47,7 @@ export class SearchresultComponent  implements OnInit {
 
   getDeepSearchProducts(searchTerm:any){
     console.log(searchTerm);
-    this.dataService.getdeepSearchProduct(searchTerm.product_name).subscribe(data => {
+    this.dataService.getdeepSearchProduct(searchTerm).subscribe(data => {
       console.log(data);
       this.productSearch = data.products;
       this.showLoader = false;
